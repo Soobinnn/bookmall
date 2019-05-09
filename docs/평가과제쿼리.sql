@@ -62,7 +62,7 @@ insert into member values(null, "베리","010-5259-0918","isb9082@daum.net",pass
 select * from member;
 
 -- 회원리스트
-select member_no, name, tel, email, password from member;
+select member_no, name, tel, email from member;
 
 
 -- 카테고리등록

@@ -8,12 +8,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import bookmall.vo.MemberVo;
+import bookmall.vo.CartVo;
 
-public class MemberDao 
+public class CartDao 
 {
-	// 회원 추가
-	public Boolean insert(MemberVo vo) 
+	// 카트 추가
+	public Boolean insert(CartVo vo) 
 	{
 		Boolean result = false;
 			
@@ -23,16 +23,14 @@ public class MemberDao
 		{
 			conn = getConnection();
 				
-			String sql = "insert into member "+
-						 "values(null ,? ,? ,? ,password(?))";
+			String sql = "insert into cart values(?,?,?);";
 				
 			pstmt = conn.prepareStatement(sql);
 				
-			pstmt.setString(1, vo.getName());
-			pstmt.setString(2, vo.getTel());
-			pstmt.setString(3, vo.getEmail());
-			pstmt.setString(4, vo.getPassword());
-			
+			pstmt.setLong(1, vo.getMember_no());
+			pstmt.setLong(2, vo.getBook_no());
+			pstmt.setLong(3, vo.getQuentity());
+				
 			int count = pstmt.executeUpdate();
 			result = (count == 1);
 			
@@ -63,10 +61,10 @@ public class MemberDao
 			return result;
 		}
 		
-	    //회원리스트
-		public List<MemberVo> getList()
+	    //카트 리스트
+		public List<CartVo> getList(Long no)
 		{
-			List<MemberVo> result = new ArrayList<MemberVo>();
+			List<CartVo> result = new ArrayList<CartVo>();
 
 			Connection conn = null;
 			PreparedStatement pstmt = null;
@@ -75,25 +73,30 @@ public class MemberDao
 			{
 				conn = getConnection();
 				
-				String sql = "select member_no, name, tel, email from member";
+				String sql = "SELECT c.name as name, b.title as title, a.quantity as quentity " + 
+						"FROM cart a " + 
+						"JOIN book b " + 
+						"ON a.book_no = b.book_no " + 
+						"JOIN member c " + 
+						"ON a.member_no = c.member_no " + 
+						"WHERE a.member_no = ?";
 			
 				pstmt = conn.prepareStatement(sql);
+				pstmt.setLong(1, no);
 				
 				rs = pstmt.executeQuery();
-				
+			
 				while( rs.next() ) 
 				{
-					Long member_no = rs.getLong(1);
-					String name = rs.getString(2);
-					String tel = rs.getString(3);
-					String email = rs.getString(4);
+					String name = rs.getString(1);
+					String title = rs.getString(2);
+					Long quentity = rs.getLong(3);
 					
-					MemberVo vo = new MemberVo();
+					CartVo vo = new CartVo();
 					
-					vo.setMember_no(member_no);
 					vo.setName(name);
-					vo.setTel(tel);
-					vo.setEmail(email);
+					vo.setTitle(title);
+					vo.setQuentity(quentity);
 					
 					result.add(vo);
 				}

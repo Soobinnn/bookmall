@@ -76,8 +76,8 @@ public class BookDao
 			conn = getConnection();
 			
 			String sql = 
-			"select book_no as 도서번호, title as 제목, price as 가격,"+
-			"(select name from category where a.category_no=category_no) as 카테고리명 "+ 
+			"select book_no, title, price,"+
+			"(select name from category where a.category_no=category_no) as category_name "+ 
 			"from book a";
 			pstmt = conn.prepareStatement(sql);
 			

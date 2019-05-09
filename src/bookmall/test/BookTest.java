@@ -16,7 +16,7 @@ public class BookTest
 		getBookListTest();
 	}
 	
-	// 상품리스트(도서리스트) 테스트 코드
+	// 상품(도서)등록
 	public static void Bookinsert(String title, Long price, Long category_no) 
 	{
 		BookVo vo = new BookVo();
@@ -27,7 +27,7 @@ public class BookTest
 		new BookDao().insert(vo);
 		System.out.println("책이 등록되었습니다.");
 	}
-	
+	// 상품리스트(도서리스트)
 	public static void getBookListTest() 
 	{
 		List<BookVo> list = new BookDao().getList();
