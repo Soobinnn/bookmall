@@ -39,6 +39,11 @@ public class CartVo
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	@Override
+	public String toString() {
+		return "CartVo [member_no=" + member_no + ", book_no=" + book_no + ", quentity=" + quentity + ", name=" + name
+				+ ", title=" + title + "]";
+	}
 	
 	
 }

@@ -5,13 +5,15 @@ import java.util.List;
 import bookmall.dao.MemberDao;
 import bookmall.vo.MemberVo;
 
+
+//2번 테스트
 public class MemberTest 
 {
 	public static void main(String[] args) 
 	{
-		/* 회원리스트 테스트 코드 */ 
+		/* 회원리스트 -2명 테스트 코드 */ 
 		MemberInsert("임수빈", "010-3449-0918", "isb9082@naver.com", "1234");
-		MemberInsert("베리", "010-5259-4588", "isb9082@daum.net", "1234");
+		MemberInsert("베리", "010-5259-4588", "berry@daum.net", "5678");
 	
 		getMemberListTest();
 	}

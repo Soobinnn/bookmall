@@ -1,13 +1,13 @@
 package bookmall.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import bookmall.main.MyConnection;
 import bookmall.vo.CartVo;
 
 public class CartDao 
@@ -21,7 +21,7 @@ public class CartDao
 		PreparedStatement pstmt = null;
 		try 
 		{
-			conn = getConnection();
+			conn = MyConnection.getConnection();
 				
 			String sql = "insert into cart values(?,?,?)";
 				
@@ -71,7 +71,7 @@ public class CartDao
 			ResultSet rs = null;
 			try 
 			{
-				conn = getConnection();
+				conn = MyConnection.getConnection();
 				
 				String sql = "SELECT c.name as name, b.title as title, a.quantity as quentity " + 
 						"FROM cart a " + 
@@ -131,21 +131,4 @@ public class CartDao
 			return result;
 		}
 		
-			
-		private Connection getConnection() throws SQLException 
-		{
-			Connection conn = null;
-			try 
-			{
-				Class.forName("org.mariadb.jdbc.Driver");
-				String url = "jdbc:mariadb://192.168.1.118:3307/bookmall";
-				conn = DriverManager.getConnection(url, "bookmall", "bookmall");
-
-			} 
-			catch (ClassNotFoundException e) 
-			{
-				System.out.println("드라이버 로딩 실패:" + e);
-			}
-			return conn;
-		}
 }

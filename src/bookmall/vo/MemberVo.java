@@ -38,6 +38,11 @@ public class MemberVo
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	@Override
+	public String toString() {
+		return "MemberVo [member_no=" + member_no + ", name=" + name + ", tel=" + tel + ", email=" + email
+				+ ", password=" + password + "]";
+	}
 	
 	
 	

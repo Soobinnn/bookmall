@@ -6,15 +6,16 @@ import bookmall.dao.OrderDao;
 import bookmall.vo.OrderVo;
 
 
-
+// 5번테스트
 public class OrderTest 
 {
 	public static void main(String[] args) 
 	{
-		/* 주문리스트 테스트 코드 */ 
-		OrderInsert(125500L,"서울시 서초구 반포동",2L);
+		/* 주문리스트 1개 테스트 코드 */ 
+		OrderInsert(136000L,"서울특별시 서초구 신반포로 270-134동 2402호",1L);
+		OrderInsert(51400L,"서울특별시 서초구 반포동 반포자이아파트 134-2402",2L);
 		
-		getOrderListTest(2L);
+		getOrderListTest(1L);
 	}
 	
 	// 주문  등록
@@ -30,7 +31,7 @@ public class OrderTest
 			System.out.println("주문에 등록되었습니다.");
 	}
 	
-	// 주문 리스트
+	// 주문 리스트 
 	public static void getOrderListTest(Long no) 
 	{
 			List<OrderVo> list = new OrderDao().getList(no);

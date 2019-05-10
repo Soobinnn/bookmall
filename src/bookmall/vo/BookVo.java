@@ -42,13 +42,9 @@ public class BookVo
 	}
 	@Override
 	public String toString() {
-		return "BookVo [book_no=" + book_no + ", title=" + title + ", price=" + price + ", category_no=" + category_no
+		return "BookVo [book_no=" + book_no + ", title=" + title + ", price=" + price 
 				+ ", category_name=" + category_name + "]";
 	}
-	/*public void bookList()
-	{
-		
-		System.out.println(" "+book_no+"  " +"  "+title+"  "+"  "+price+"원  "+"  "+category_name+"  ");
-	}*/
+	
 	
 }

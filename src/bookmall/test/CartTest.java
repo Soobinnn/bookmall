@@ -5,12 +5,15 @@ import java.util.List;
 import bookmall.dao.CartDao;
 import bookmall.vo.CartVo;
 
-
+// 4번 테스트
 public class CartTest 
 {
 	public static void main(String[] args) 
 	{
-		/* 카트리스트 테스트 코드 */ 
+		/* 카트리스트 - 2개 테스트 코드 */ 
+		CartInsert(1L,1L,2L);
+		CartInsert(1L,2L,3L);
+		CartInsert(2L,2L,1L);
 		CartInsert(2L,3L,2L);
 		
 		getCartListTest(2L);

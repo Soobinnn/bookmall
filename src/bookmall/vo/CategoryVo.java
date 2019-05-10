@@ -17,6 +17,10 @@ public class CategoryVo
 	public void setName(String name) {
 		this.name = name;
 	}
+	@Override
+	public String toString() {
+		return "CategoryVo [category_no=" + category_no + ", name=" + name + "]";
+	}
 	
 	
 	

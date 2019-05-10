@@ -5,14 +5,15 @@ import java.util.List;
 import bookmall.dao.BookDao;
 import bookmall.vo.BookVo;
 
+// 3번테스트
 public class BookTest 
 {
 	public static void main(String[] args) 
 	{
-		/* 상품리스트(도서리스트) 테스트 코드 */ 
-		Bookinsert("아리랑", 5500L, 2L);
-		Bookinsert("디자인의 중요성", 19900L, 6L);
-		
+		/* 상품리스트(도서리스트) - 3개 테스트 코드 */ 
+		Bookinsert("GOF의 디자인패턴", 26000L, 3L);
+		Bookinsert("톰캣 최종분석", 28000L, 3L);
+		Bookinsert("트와일라잇", 11700L, 1L);
 		getBookListTest();
 	}
 	

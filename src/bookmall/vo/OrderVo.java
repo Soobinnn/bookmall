@@ -55,6 +55,10 @@ public class OrderVo
 	public void setName(String name) {
 		this.name = name;
 	}
+	@Override
+	public String toString() {
+		return "OrderVo [price=" + price + ", address=" + address + " orders_date=" + orders_date + ", orders_code=" + orders_code + ", name=" + name + "]";
+	}
 	
 	
 	

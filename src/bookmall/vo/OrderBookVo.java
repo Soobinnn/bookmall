@@ -39,6 +39,11 @@ public class OrderBookVo
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	@Override
+	public String toString() {
+		return "OrderBookVo [ quantity=" + quantity
+				+ ", orders_code=" + orders_code + ", title=" + title + "]";
+	}
 	
 	
 	

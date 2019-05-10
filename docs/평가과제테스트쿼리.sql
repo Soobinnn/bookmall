@@ -71,15 +71,10 @@ insert into category values(null, "수험서");
 -- 카테고리리스트
 select category_no, name from category;
 
-select * from cart;
--- 카트담기
-insert into cart values(1,2,3);
-insert into cart values(1,1,2);
-insert into cart values(1,3,4);  
-insert into cart values(2,2,1);
-insert into cart values(2,3,1);
 
- 
+-- 카트담기
+insert into cart values(2,5,4); 
+
 -- 카트리스트
 select c.name, b.title, a.quantity
 from cart a
@@ -87,7 +82,7 @@ join book b
 ON a.book_no = b.book_no
 join member c
 ON a.member_no = c.member_no
-where a.member_no = 2;
+where a.member_no = 1;
 
 
 
@@ -114,7 +109,7 @@ select orders_code, name, address,price , orders_date
 from orders 
 JOIN member
 USING (member_no)
-where member_no=2;  
+where member_no=1;  
 
 
 alter table orders add orders_code VARCHAR(14);
@@ -130,34 +125,7 @@ ON a.book_no = b.book_no
 where a.member_no = 1
 GROUP BY a.member_no
 
-insert into order_book values(3,4,2);
-insert into order_book values(4,4,2);
+insert into order_book
 
 -- 주문도서리스트
-SELECT (SELECT orders_code FROM orders WHERE a.orders_no=orders_no) as orders_code, (SELECT title FROM book WHERE a.book_no=book_no) as title, quantity
-FROM order_book a
-WHERE orders_no = 1;
 
-select * from orders;
-select * from order_book;
-
-
-delete from cart;
-delete from order_book;
-delete from book;
-delete from category;
-delete from orders;
-delete from member;
-
-select * from category;
-
-select * from book;
-select * from orders;
-
-
-      concat(date_format(now(), '%Y%m%d'),"-",lpad((last_insert_id()+1),3,0))
-insert into orders values (null, 550002, "서울특별시 노원구 34-24",2,now(),null);
-
-select * from orders
-
-select concat(date_format(now(), '%Y%m%d'),"-",lpad((last_insert_id()),3,0));

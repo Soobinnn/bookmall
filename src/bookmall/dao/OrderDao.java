@@ -1,7 +1,6 @@
 package bookmall.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,13 +8,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import bookmall.vo.OrderBookVo;
+import bookmall.main.MyConnection;
 import bookmall.vo.OrderVo;
 
 
 public class OrderDao 
 {
-	// 주문 추가
+		// 주문 추가
 		public Boolean insert(OrderVo vo) 
 		{
 			Boolean result = false;
@@ -24,19 +23,24 @@ public class OrderDao
 			PreparedStatement pstmt = null;
 			try 
 			{
-				conn = getConnection();
+				conn = MyConnection.getConnection();
 					
-				String sql = "INSERT INTO orders values (null, ?, ?, ?,now(),concat(date_format(now(), '%Y%m%d'),\"-\",lpad((last_insert_id()+1),3,0)))";
+				conn.setAutoCommit(false); 
+				
+				String sql = "INSERT INTO orders values (null, ?, ?, ?,now(),null)";
 					
 				pstmt = conn.prepareStatement(sql);
 					
 				pstmt.setLong(1, vo.getPrice());
 				pstmt.setString(2, vo.getAddress());
-				pstmt.setLong(3, vo.getMember_no());
-					
+				pstmt.setLong(3, vo.getMember_no());	    
+			    
 				int count = pstmt.executeUpdate();
-				result = (count == 1);
 				
+				pstmt.executeUpdate();
+				
+				result = (count == 1);
+			
 			} 
 			catch (SQLException e) 
 			{
@@ -63,6 +67,53 @@ public class OrderDao
 				
 				return result;
 			}
+		
+			// 주문코드 추가
+			public Boolean update() 
+			{
+				Boolean result = false;
+						
+				Connection conn = null;
+				PreparedStatement pstmt = null;
+				try 
+				{
+					conn = MyConnection.getConnection();
+							
+					String sql = "UPDATE orders SET orders_code = concat(date_format(now(), '%Y%m%d'),'-',"+
+								"lpad(last_insert_id(),3,0)) " + 
+								"WHERE orders_no = last_insert_id()";
+							
+					pstmt = conn.prepareStatement(sql);
+										
+					int count = pstmt.executeUpdate();
+					result = (count == 1);
+						
+				} 
+				catch (SQLException e) 
+				{
+					System.out.println("error" + e);
+				} 
+				finally 
+				{
+					try 
+					{
+						if( pstmt != null ) 
+						{
+							pstmt.close();
+						}
+						if( conn != null ) 
+						{
+							conn.close();
+						}
+						} 
+					catch (SQLException e) 
+					{
+						e.printStackTrace();
+					}
+				}		
+					
+				return result;
+			}
 			
 		    //주문 리스트
 			public List<OrderVo> getList(Long no)
@@ -74,7 +125,7 @@ public class OrderDao
 				ResultSet rs = null;
 				try 
 				{
-					conn = getConnection();
+					conn = MyConnection.getConnection();
 					
 					String sql = "SELECT orders_code, name, address,price , orders_date "+ 
 							"FROM orders " + 
@@ -138,21 +189,4 @@ public class OrderDao
 				return result;
 			}
 			
-				
-			private Connection getConnection() throws SQLException 
-			{
-				Connection conn = null;
-				try 
-				{
-					Class.forName("org.mariadb.jdbc.Driver");
-					String url = "jdbc:mariadb://192.168.1.118:3307/bookmall";
-					conn = DriverManager.getConnection(url, "bookmall", "bookmall");
-
-				} 
-				catch (ClassNotFoundException e) 
-				{
-					System.out.println("드라이버 로딩 실패:" + e);
-				}
-				return conn;
-			}
 }

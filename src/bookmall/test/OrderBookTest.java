@@ -6,16 +6,18 @@ import bookmall.dao.OrderBookDao;
 import bookmall.vo.OrderBookVo;
 
 
-
+// 6번 테스트
 public class OrderBookTest 
 {
 	public static void main(String[] args) 
 	{
-		/* 주문도서리스트 테스트 코드 */ 
-		OrderBookInsert(3L,5L,2L);
-		OrderBookInsert(4L,5L,2L);
+		/* 주문도서리스트 -2개 테스트 코드 */ 
+		OrderBookInsert(1L,1L,2L);
+		OrderBookInsert(2L,1L,3L);
+		OrderBookInsert(2L,2L,1L);
+		OrderBookInsert(3L,2L,2L);
 		
-		getOrderBookListTest(4L);
+		getOrderBookListTest(1L);
 	}
 	
 	// 주문도서  등록
