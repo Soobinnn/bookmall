@@ -6,7 +6,9 @@ import bookmall.dao.MemberDao;
 import bookmall.vo.MemberVo;
 
 
-//2번 테스트
+// 2번 테스트
+// 테스트 순서
+// CategoryTest -> MemberTest -> BookTest -> CartTest -> OrderTest -> OrderBookTest
 public class MemberTest 
 {
 	public static void main(String[] args) 

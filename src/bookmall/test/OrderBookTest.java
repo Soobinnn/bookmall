@@ -7,6 +7,8 @@ import bookmall.vo.OrderBookVo;
 
 
 // 6번 테스트
+// 테스트 순서
+// CategoryTest -> MemberTest -> BookTest -> CartTest -> OrderTest -> OrderBookTest
 public class OrderBookTest 
 {
 	public static void main(String[] args) 

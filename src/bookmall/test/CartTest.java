@@ -6,6 +6,8 @@ import bookmall.dao.CartDao;
 import bookmall.vo.CartVo;
 
 // 4번 테스트
+// 테스트 순서
+// CategoryTest -> MemberTest -> BookTest -> CartTest -> OrderTest -> OrderBookTest
 public class CartTest 
 {
 	public static void main(String[] args) 

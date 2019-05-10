@@ -5,7 +5,9 @@ import java.util.List;
 import bookmall.dao.CategoryDao;
 import bookmall.vo.CategoryVo;
 
-// 1번테스트
+// 1번 테스트
+// 테스트 순서
+// CategoryTest -> MemberTest -> BookTest -> CartTest -> OrderTest -> OrderBookTest
 public class CategoryTest 
 {
 	public static void main(String[] args) 

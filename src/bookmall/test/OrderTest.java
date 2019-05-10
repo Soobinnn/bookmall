@@ -6,7 +6,9 @@ import bookmall.dao.OrderDao;
 import bookmall.vo.OrderVo;
 
 
-// 5번테스트
+// 5번 테스트
+// 테스트 순서
+// CategoryTest -> MemberTest -> BookTest -> CartTest -> OrderTest -> OrderBookTest
 public class OrderTest 
 {
 	public static void main(String[] args) 
@@ -41,10 +43,4 @@ public class OrderTest
 			}
 	}	
 		
-		//insert order (Ordervo)
-		   // insert orderBook (List)
-		   // 오더를 보여주고 눌렀을떄 List  getOrderList(Long MemeberNo)
-		   // List getOrderBookList (Long orderNo)  --> service에서 잘 조합하도록
-		   /// 여기는 CRUD만
-		   // select last_insert_id(); -> 방금 넣은 것의 pk 를 찾아줌
 }

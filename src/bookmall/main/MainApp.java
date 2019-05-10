@@ -15,6 +15,7 @@ import bookmall.vo.MemberVo;
 import bookmall.vo.OrderBookVo;
 import bookmall.vo.OrderVo;
 
+// 메인 실행문
 public class MainApp 
 {
 	public static void main(String[] args) 

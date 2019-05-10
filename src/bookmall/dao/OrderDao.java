@@ -25,9 +25,11 @@ public class OrderDao
 			{
 				conn = MyConnection.getConnection();
 					
-				conn.setAutoCommit(false); 
 				
-				String sql = "INSERT INTO orders values (null, ?, ?, ?,now(),null)";
+				String sql = "INSERT INTO orders values (null, ?, ?, ?, now(), "+
+						"concat(date_format(now(), '%Y%m%d'),'-', "+
+						"lpad(((select `auto_increment` from information_schema.tables "+
+								"where table_schema = 'bookmall' and table_name = 'orders')),3,0)))";
 					
 				pstmt = conn.prepareStatement(sql);
 					
@@ -36,8 +38,6 @@ public class OrderDao
 				pstmt.setLong(3, vo.getMember_no());	    
 			    
 				int count = pstmt.executeUpdate();
-				
-				pstmt.executeUpdate();
 				
 				result = (count == 1);
 			
@@ -65,53 +65,6 @@ public class OrderDao
 				}
 			}		
 				
-				return result;
-			}
-		
-			// 주문코드 추가
-			public Boolean update() 
-			{
-				Boolean result = false;
-						
-				Connection conn = null;
-				PreparedStatement pstmt = null;
-				try 
-				{
-					conn = MyConnection.getConnection();
-							
-					String sql = "UPDATE orders SET orders_code = concat(date_format(now(), '%Y%m%d'),'-',"+
-								"lpad(last_insert_id(),3,0)) " + 
-								"WHERE orders_no = last_insert_id()";
-							
-					pstmt = conn.prepareStatement(sql);
-										
-					int count = pstmt.executeUpdate();
-					result = (count == 1);
-						
-				} 
-				catch (SQLException e) 
-				{
-					System.out.println("error" + e);
-				} 
-				finally 
-				{
-					try 
-					{
-						if( pstmt != null ) 
-						{
-							pstmt.close();
-						}
-						if( conn != null ) 
-						{
-							conn.close();
-						}
-						} 
-					catch (SQLException e) 
-					{
-						e.printStackTrace();
-					}
-				}		
-					
 				return result;
 			}
 			
