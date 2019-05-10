@@ -6,13 +6,12 @@ import bookmall.dao.CartDao;
 import bookmall.vo.CartVo;
 
 
-
 public class CartTest 
 {
 	public static void main(String[] args) 
 	{
 		/* 카트리스트 테스트 코드 */ 
-		CartInsert(2L,5L,4L);
+		CartInsert(2L,3L,2L);
 		
 		getCartListTest(2L);
 	}

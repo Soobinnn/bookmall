@@ -23,7 +23,7 @@ public class CartDao
 		{
 			conn = getConnection();
 				
-			String sql = "insert into cart values(?,?,?);";
+			String sql = "insert into cart values(?,?,?)";
 				
 			pstmt = conn.prepareStatement(sql);
 				
