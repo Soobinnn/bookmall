@@ -13,10 +13,12 @@ public class MyConnection
 		try 
 		{
 			Class.forName("org.mariadb.jdbc.Driver");
-			//String url = "jdbc:mariadb://192.168.1.118:3307/bookmall";
-			String url = "jdbc:mariadb://soobindb.c9rnggg5gymg.ap-northeast-2.rds.amazonaws.com:3307/bookmall";
-			//conn = DriverManager.getConnection(url, "bookmall", "bookmall");
-			conn = DriverManager.getConnection(url, "soobinnn", "TksxhRl21!");
+			String url = "jdbc:mariadb://192.168.1.118:3307/bookmall";
+			conn = DriverManager.getConnection(url, "bookmall", "bookmall");
+			
+			// 집 테스트용
+			//String url = "jdbc:mariadb://soobindb.c9rnggg5gymg.ap-northeast-2.rds.amazonaws.com:3307/bookmall";
+			//conn = DriverManager.getConnection(url, "soobinnn", "TksxhRl21!");
 		} 
 		catch (ClassNotFoundException e) 
 		{
